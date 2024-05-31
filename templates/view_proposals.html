@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Received Proposals</title>
+</head>
+<body>
+    <h1>Received Proposals</h1>
+    {% if proposals %}
+        <ul>
+        {% for proposal in proposals %}
+            <li>
+                Token ID: {{ proposal.token_id }}, Price: {{ proposal.price }} ETH
+                <form action="{{ url_for('accept_proposal') }}" method="post" style="display:inline;">
+                    <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
+                    <button type="submit">Accept</button>
+                </form>
+                <form action="{{ url_for('reject_proposal') }}" method="post" style="display:inline;">
+                    <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
+                    <button type="submit">Reject</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No proposals received.</p>
+    {% endif %}
+</body>
+</html>

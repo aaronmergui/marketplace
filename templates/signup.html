@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-5">
+        <form method="POST" action="{{ url_for('auth.signup') }}">
+            <h1 class="title">Sign Up</h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-danger">{{ messages[0] }}</div>
+            {% endif %}
+            {% endwith %}
+            <div class="field" >
+                <label class="label" style= "color: blue">Email</label>
+                <div class="control">
+                    <input class="input" type="email" name="email" required>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" style= "color: blue"> public address</label>
+                <div class="control">
+                    <input class="input" type="text" name="public address" required>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" style= "color: blue">Metamask private address</label>
+                <div class="control">
+                    <input class="input" type="text" name="private address" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" style= "color: blue">Name</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" required>
+                </div>
+            </div>
+            <div the="field">
+                <label class="label" style= "color: blue">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link" type="submit">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

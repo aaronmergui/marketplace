@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        .button-accept {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .button-accept:hover {
+            background-color: darkgreen;
+        }
+    </style>
+
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000; color: darkblue">
+        <h2>Balance: {{ balance }} ETH</h2>
+    </div>
+
+    <h1 class="title" style="color: red; margin-top: 50px;">Your NFTs</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>StockX</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nft in nfts %}
+            <tr>
+                <td>{{ nft.token_id }}</td>
+                <td>{{ nft.name }}</td>
+                <td>{{ nft.description }}</td>
+                <td><img src="{{ nft.uri }}" alt="NFT Image" style="max-width: 100px; max-height: 100px;"></td>
+                <td>
+                    <a href="{{nft.stockX}}">StockX_link</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('nft.sell', token_id=nft.token_id) }}" class="button is-danger">Sell</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1 class="title" style="color: blue">Your Proposals</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Price (WEI)</th>
+                <th>Proposer</th>
+                <th>StockX</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prop in proposals %}
+            <tr>
+                <td>{{ prop.token_id }}</td>
+                <td>{{ prop.name }}</td>
+                <td>{{ prop.description }}</td>
+                <td><img src="{{ prop.image }}" alt="NFT Image" style="max-width: 100px; max-height: 100px;"></td>
+                <td>{{ prop.price }}</td>
+                <td>{{ prop.owner }}</td>
+                <td>
+                    <a href="{{prop.stockX}}">StockX_link</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('nft.handle_accept_proposal', proposal_id=prop.proposal_id, price = prop.price) }}" class="button-accept">Accept</a>
+                    <a href="{{ url_for('nft.handle_decline_proposal', proposal_id=prop.proposal_id) }}" class="button is-danger">Decline</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

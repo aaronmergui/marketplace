@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title">Mint New NFT</h1>
+<form method="POST" action="{{ url_for('nft.mint_nft') }}">
+    <div class="field">
+        <label class="label">Token URI</label>
+        <div class="control">
+            <input class="input" type="text" name="uri" placeholder="http://example.com/nft.json" required>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Token ID</label>
+        <div class="control">
+            <input class="input" type="number" name="token_id" required>
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary" type="submit">Mint NFT</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
