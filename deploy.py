@@ -41,7 +41,7 @@ print(f"Is connected: {w3.is_connected()}")
 
 # Account credentials
 account_address = '0xcA6D6492373110DD49644719a54A249d257E20ab'
-private_key = '597859c569ecc97c7f6f2f78eb10636fbb4fba6761366140cb9a0851435193cf'
+private_key = 'db157516457f94319772029afcc07b1639a7c10d9e141cdee500af990797c9fe'
 
 # Deploy the contract
 MyToken = w3.eth.contract(abi=abi, bytecode=bytecode)
